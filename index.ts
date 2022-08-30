@@ -30,16 +30,18 @@ obs[1] = fromEvent(document.getElementById('input2'), 'keyup').pipe(
 // 3
 //const input2Subject = new Subject<number>();
 const input2Subject = new BehaviorSubject<number>(0);
+// 將計算結果抽離出來，建立一個取得結果的Observable
 obs[2] = input2Subject.pipe(
   switchMap((inputNum) => obs[0].pipe(map((num: number) => num + inputNum)))
 );
+// input2 keyup event
 fromEvent(document.getElementById('input2'), 'keyup')
   .pipe(
     debounceTime(300),
     map((event) => parseInt((event.target as HTMLInputElement)?.value) || 0),
     distinctUntilChanged()
   )
-  .subscribe((num) => input2Subject.next(num));
+  .subscribe(input2Subject); // 將input2Subject當作Observer，取得input2 keyup的結果
 
 // input2 element subscribe
 input2Subject
