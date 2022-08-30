@@ -17,7 +17,8 @@ const obs = [];
 // obs[0] =
 
 // 2.
-// obs[1] = fromEvent(document.getElementById('input2'), 'keyup').pipe();
+// document.getElementById('input2')
+// obs[1] = fromEvent(, 'keyup').pipe();
 
 // 3
 const input2Subject = new Subject<number>();
