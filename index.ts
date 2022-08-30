@@ -6,7 +6,6 @@ import {
   from,
   fromEvent,
   Observable,
-  of,
   Subject,
   switchMap,
 } from 'rxjs';
@@ -14,7 +13,7 @@ import { map, debounceTime, tap } from 'rxjs/operators';
 
 const obs = [];
 // 1.
-obs[0] = of(1, 2, 3, 4, 5).pipe(
+obs[0] = from([1, 2, 3, 4, 5]).pipe(
   map((num) => num + 1),
   filter((num) => num % 2 === 0)
 );
